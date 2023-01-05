@@ -1,2 +1,3 @@
 # CPP-LinkedList
-A linked list implementation from scratch using C++ 11
+My personal implementation of a singly linked list in C++ 17 from scratch.
+This repository is mainly just to practise my Git skills.
