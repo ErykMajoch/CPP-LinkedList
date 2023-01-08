@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 
 // Node structure for the linked list
 // Contains a getter for the value it holds
@@ -20,6 +21,27 @@ class LinkedList {
         // Contructor
         LinkedList() {
             Head = NULL;
+        }
+
+        // Linked list access operation at position i
+        T operator [](int i) {
+            if (i < 0) {
+                throw std::invalid_argument("Negative indicie passed. ");
+            }
+
+            int j = 0;
+            Node<T> *Current = Head;
+            while (j < i) {
+                if (Current->Tail == NULL) {
+                    throw std::invalid_argument("Index out of bounds");
+                }
+
+                Current = Current->Tail;
+                j++;
+
+            }
+
+            return Current->GetValue();
         }
 
         // Inserts elements at the end of the list
@@ -87,5 +109,7 @@ int main() {
     }
     t.insertAtTail(77);
     t.displayList();
+
+    std::cout << t[20] << std::endl;
     return 1;
 }
