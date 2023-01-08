@@ -17,10 +17,29 @@ template <class T>
 class LinkedList {
     public:
 
+        // Contructor
         LinkedList() {
             Head = NULL;
         }
 
+        // Inserts elements at the end of the list
+        void insertAtTail(T Item) {
+            Node<T> *temp = new Node<T>;
+            temp->Head = Item;
+            Node<T> *Current = Head;
+
+            if (Current == NULL) {
+                Head = temp;
+            } else {
+                while (Current->Tail != NULL) {
+                    Current = Current->Tail;
+                }
+                Current->Tail = temp;
+            }
+            temp->Tail = NULL;
+        }
+
+        // Returns the size of the linked list
         size_t size() {
             size_t count = 0;
             Node<T> *Current = Head;
@@ -31,6 +50,20 @@ class LinkedList {
             return count;
         }
 
+        // Displays the contents of the list
+        void displayList() {
+            if (Head != NULL) {
+                Node<T> *Current = Head;
+                while (Current != NULL) {
+                    std::cout << "| " << Current->GetValue() << " \t| " << Current->Tail << " |\n";
+                    Current = Current->Tail;
+                }
+            } else {
+                std::cout << "The list is empty\n";
+            }
+        }
+
+        // Deconstructor
         ~LinkedList() {
             if (Head != NULL) {
                 Node<T> *Current = Head;
@@ -49,7 +82,10 @@ class LinkedList {
 
 int main() {
     LinkedList<int> t = {};
-    std::cout << t.size() << std::endl;
-    std::cout << "Hello World\n";
+    for (int i = 0; i < 20; i++) {
+        t.insertAtTail(i);
+    }
+    t.insertAtTail(77);
+    t.displayList();
     return 1;
 }
