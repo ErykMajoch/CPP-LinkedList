@@ -44,7 +44,17 @@ class LinkedList {
             return Current->GetValue();
         }
 
-        // Inserts elements at the end of the list
+        // Inserts element at the beginning of the list
+        void insertAtHead(T Item) {
+            Node<T> *temp = new Node<T>;
+            temp->Head = Item;
+            temp->Tail = Head;
+            Head = temp;
+            
+            
+        }
+
+        // Inserts element at the end of the list
         void insertAtTail(T Item) {
             Node<T> *temp = new Node<T>;
             temp->Head = Item;
@@ -109,7 +119,10 @@ int main() {
     }
     t.insertAtTail(77);
     t.displayList();
-
-    std::cout << t[20] << std::endl;
+    std::cout << t.size() << "\n";
+    
+    t.insertAtHead(321);
+    t.displayList();
+    std::cout << t.size() << "\n";
     return 1;
 }
